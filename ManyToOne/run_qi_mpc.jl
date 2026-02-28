@@ -1,6 +1,3 @@
-# run_qi_mpc.jl  ── ManyToOne version (10 agents → 1 fixed target)
-#   - Target state   : fixed XT from Constants.jl
-#   - Initial states : sampled uniformly at random from [-3, 3]² — fresh every run
 include("src/Constants.jl")
 include("src/SystemDynamics.jl")
 include("src/BlockQP.jl")
@@ -13,10 +10,10 @@ using LinearAlgebra, Printf, Random
 
 const N_AGENTS = 10
 
-# ── random point uniformly in [-3, 3]² ──────────────────────────────────────
+# Random point uniformly in [-3, 3]^2
 rand_state() = [rand() * 6.0 - 3.0, rand() * 6.0 - 3.0]
 
-# ── single-agent MPC loop ────────────────────────────────────────────────────
+# Single-agent MPC loop 
 function run_single_agent(z0, XT, ν, Nblk, cost_grid, control_grid)
     z               = copy(z0)
     history_z       = [copy(z)]
@@ -74,7 +71,7 @@ function run_single_agent(z0, XT, ν, Nblk, cost_grid, control_grid)
             z_final         = z)
 end
 
-# ── main ─────────────────────────────────────────────────────────────────────
+# main ===============================================================
 function main()
     # 1. Fixed target from Constants.jl
     println("Target XT = [$(XT[1]), $(XT[2])]")
