@@ -5,7 +5,7 @@ using LinearAlgebra
 export N, max_micro_steps, html_filename,
        A, B, Q, R_scalar, XT
 
-const XT = [-1.0; 2.0]          # fixed target — same every run
+const XT = [-1.0; 2.0]          
 
 const N               = 20
 const max_micro_steps = 200
